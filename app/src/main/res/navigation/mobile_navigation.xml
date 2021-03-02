@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.ravit.friends_on_road.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_addEvent"
+            app:destination="@id/addEvent" />
+        <action
+            android:id="@+id/action_nav_home_to_eventDetails"
+            app:destination="@id/eventDetails" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_nav_home_to_needHelp"
+            app:destination="@id/needHelp" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.ravit.friends_on_road.login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_signUp"
+            app:destination="@id/signUp" />
+        <action
+            android:id="@+id/action_login_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_Profile"
+        android:name="com.ravit.friends_on_road.ui.profile.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_nav_Profile_to_editProfile"
+            app:destination="@id/editProfile" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_myCars"
+        android:name="com.ravit.friends_on_road.ui.myCars.MyCars"
+        android:label="fragment_my_cars"
+        tools:layout="@layout/fragment_my_cars" >
+        <action
+            android:id="@+id/action_nav_myCars_to_carDetails"
+            app:destination="@id/carDetails" />
+        <action
+            android:id="@+id/action_nav_myCars_to_addCar"
+            app:destination="@id/addCar" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp"
+        android:name="com.ravit.friends_on_road.SignUp"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUp_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfile"
+        android:name="com.ravit.friends_on_road.ui.profile.EditProfile"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_editProfile_pop"
+            app:popUpTo="@id/nav_Profile"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.ravit.friends_on_road.MainActivity"
+        android:label="app_bar_main"
+        tools:layout="@layout/app_bar_main" />
+    <fragment
+        android:id="@+id/addEvent"
+        android:name="com.ravit.friends_on_road.ui.ClosedEvents.AddEvent"
+        android:label="fragment_add_event"
+        tools:layout="@layout/fragment_add_event" >
+        <argument
+            android:name="emailOwner"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_closedEventsList"
+        android:name="com.ravit.friends_on_road.ui.ClosedEvents.ClosedEventsList"
+        android:label="fragment_closed_events_list"
+        tools:layout="@layout/fragment_closed_events_list" >
+        <action
+            android:id="@+id/action_nav_closedEventsList_to_eventDetails"
+            app:destination="@id/eventDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/carDetails"
+        android:name="com.ravit.friends_on_road.ui.myCars.CarDetails"
+        android:label="fragment_car_details"
+        tools:layout="@layout/fragment_car_details" >
+        <action
+            android:id="@+id/action_carDetails_to_editCar"
+            app:destination="@id/editCar" />
+        <argument
+            android:name="licensePlateNum"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/editCar"
+        android:name="com.ravit.friends_on_road.ui.myCars.EditCar"
+        android:label="fragment_edit_car"
+        tools:layout="@layout/fragment_edit_car" >
+        <action
+            android:id="@+id/action_editCar_to_carDetails"
+            app:destination="@id/carDetails" />
+        <argument
+            android:name="licensePlateNum"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCar"
+        android:name="com.ravit.friends_on_road.ui.myCars.AddCar"
+        android:label="fragment_add_car"
+        tools:layout="@layout/fragment_add_car" >
+        <action
+            android:id="@+id/action_addCar_to_nav_myCars"
+            app:destination="@id/nav_myCars" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventDetails"
+        android:name="com.ravit.friends_on_road.ui.ClosedEvents.EventDetails"
+        android:label="fragment_event_details"
+        tools:layout="@layout/fragment_event_details" >
+        <action
+            android:id="@+id/action_eventDetails_to_editMyOpenEvent"
+            app:destination="@id/editMyOpenEvent" />
+        <argument
+            android:name="eventNum"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/editMyOpenEvent"
+        android:name="com.ravit.friends_on_road.ui.ClosedEvents.EditMyOpenEvent"
+        android:label="fragment_edit_my_open_event"
+        tools:layout="@layout/fragment_edit_my_open_event" >
+        <argument
+            android:name="eventNum"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/needHelp"
+        android:name="com.ravit.friends_on_road.NeedHelp"
+        android:label="fragment_need_help"
+        tools:layout="@layout/fragment_need_help" />
+</navigation>

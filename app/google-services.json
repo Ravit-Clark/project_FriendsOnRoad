@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1046652179996",
+    "project_id": "friends-on-roads",
+    "storage_bucket": "friends-on-roads.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046652179996:android:b5e34628a02a669e5231d9",
+        "android_client_info": {
+          "package_name": "com.ravit.friends_on_road"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046652179996-3j83mu09rve5cfmaoc84qk66qa255sij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIP4OaJsDlIyBLyc55cpKVAVHASnvAvjk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046652179996-3j83mu09rve5cfmaoc84qk66qa255sij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
