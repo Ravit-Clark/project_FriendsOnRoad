@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +25,7 @@ import android.widget.Toast;
 import com.ravit.friends_on_road.Model.Car;
 import com.ravit.friends_on_road.Model.Model;
 import com.ravit.friends_on_road.Model.ModelFirebase;
-import com.ravit.friends_on_road.Model.User;
 import com.ravit.friends_on_road.R;
-import com.ravit.friends_on_road.ui.profile.EditProfileArgs;
-
-import java.util.List;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -47,7 +42,7 @@ public class EditCar extends Fragment {
         EditText model = view.findViewById(R.id.editCar_model);
         EditText carNum = view.findViewById(R.id.editCar_licensePlateNum);
         EditText year = view.findViewById(R.id.editCar_licensePlateNum);
-        EditText engine = view.findViewById(R.id.editCar_engine);
+        EditText engine = view.findViewById(R.id.addCar_engine);
         EditText places = view.findViewById(R.id.editCar_places);
         Button saveBtn = view.findViewById(R.id.editCar_saveBtn);
         img=view.findViewById(R.id.editCar_img);

@@ -82,16 +82,16 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="201dp"
-        android:layout_height="223dp"
+        android:layout_width="219dp"
+        android:layout_height="229dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
+        android:foreground="@drawable/logo12"
         android:src="@drawable/profile22"
         app:layout_constraintBottom_toTopOf="@+id/signUp_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/pace2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton2"

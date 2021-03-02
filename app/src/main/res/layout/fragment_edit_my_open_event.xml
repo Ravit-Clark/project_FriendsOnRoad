@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/editEvent_img"
         android:layout_width="384dp"
         android:layout_height="202dp"
         android:src="@drawable/help"
@@ -26,7 +26,7 @@
         android:layout_marginTop="80dp"
         android:text="Type"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/editEvent_img" />
 
     <TextView
         android:id="@+id/textView22"
@@ -69,65 +69,60 @@
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editEvent_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintBottom_toBottomOf="@+id/textView21"
         app:layout_constraintStart_toEndOf="@+id/textView21"
         app:layout_constraintTop_toTopOf="@+id/textView21" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editEvent_descripion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintBottom_toBottomOf="@+id/textView22"
         app:layout_constraintStart_toEndOf="@+id/textView22"
         app:layout_constraintTop_toTopOf="@+id/textView22" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/editEvent_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintBottom_toBottomOf="@+id/textView23"
         app:layout_constraintStart_toEndOf="@+id/textView23"
         app:layout_constraintTop_toTopOf="@+id/textView23" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/editEvent_car"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintBottom_toBottomOf="@+id/textView24"
         app:layout_constraintTop_toTopOf="@+id/textView24"
         tools:layout_editor_absoluteX="133dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/editEvent_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintBottom_toBottomOf="@+id/textView25"
         app:layout_constraintTop_toTopOf="@+id/textView25"
         tools:layout_editor_absoluteX="126dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/editEvent_saveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="383dp"
@@ -135,7 +130,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/editEvent_img"
         app:layout_constraintVertical_bias="0.19999999" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

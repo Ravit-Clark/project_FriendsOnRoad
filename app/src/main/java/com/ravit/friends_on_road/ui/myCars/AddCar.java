@@ -37,14 +37,14 @@ public class AddCar extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_add_car, container, false);
-        EditText model = view.findViewById(R.id.editCar_model);
-        EditText carNum = view.findViewById(R.id.addCar_licensePlateNum);
-        EditText year = view.findViewById(R.id.editCar_licensePlateNum);
-        EditText engine = view.findViewById(R.id.editCar_engine);
+        EditText model = view.findViewById(R.id.addCar_model);
+        EditText carNum = view.findViewById(R.id.addCar_year);
+        EditText year = view.findViewById(R.id.addCar_licensePlateNum);
+        EditText engine = view.findViewById(R.id.addCar_engine);
         EditText places = view.findViewById(R.id.addCar_places);
         Button addBtn = view.findViewById(R.id.addCar_addBtn);
-        ImageButton addImg=view.findViewById(R.id.addCar_addImg);
-        img=view.findViewById(R.id.editCar_img);
+        ImageButton addImg=view.findViewById(R.id.addCar_img);
+        img=view.findViewById(R.id.addCar_img);
 
         addImg.setOnClickListener(new View.OnClickListener() {
             @Override

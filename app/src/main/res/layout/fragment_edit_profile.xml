@@ -7,7 +7,7 @@
     tools:context=".ui.profile.EditProfile">
 
     <ImageView
-        android:id="@+id/event_image"
+        android:id="@+id/profile_img"
         android:layout_width="231dp"
         android:layout_height="187dp"
         android:layout_marginTop="40dp"
@@ -18,44 +18,44 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/eventDetails_type"
+        android:id="@+id/profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="50dp"
         android:text="NAME"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_image" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_img" />
 
     <TextView
-        android:id="@+id/eventDetails_description"
+        android:id="@+id/profile_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:text="PHONE"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventDetails_type" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
     <TextView
-        android:id="@+id/eventDetails_location"
+        android:id="@+id/ppp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:text="EMAIL"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventDetails_description" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_phone" />
 
     <Button
-        android:id="@+id/eventDetails_editBtn"
+        android:id="@+id/editProfile_saveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="SAVE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventDetails_location" />
+        app:layout_constraintTop_toBottomOf="@+id/ppp" />
 
     <EditText
         android:id="@+id/editProfile_name"
@@ -64,22 +64,9 @@
         android:layout_marginStart="50dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintBottom_toBottomOf="@+id/eventDetails_type"
-        app:layout_constraintStart_toEndOf="@+id/eventDetails_type"
-        app:layout_constraintTop_toTopOf="@+id/eventDetails_type" />
-
-    <EditText
-        android:id="@+id/editProfile_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintBottom_toBottomOf="@+id/eventDetails_description"
-        app:layout_constraintStart_toEndOf="@+id/eventDetails_description"
-        app:layout_constraintTop_toTopOf="@+id/eventDetails_description" />
+        app:layout_constraintBottom_toBottomOf="@+id/profile_name"
+        app:layout_constraintStart_toEndOf="@+id/profile_name"
+        app:layout_constraintTop_toTopOf="@+id/profile_name" />
 
     <EditText
         android:id="@+id/editProfile_email"
@@ -89,10 +76,9 @@
         android:ems="10"
         android:enabled="false"
         android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintBottom_toBottomOf="@+id/eventDetails_location"
-        app:layout_constraintStart_toEndOf="@+id/eventDetails_location"
-        app:layout_constraintTop_toTopOf="@+id/eventDetails_location" />
+        app:layout_constraintBottom_toBottomOf="@+id/ppp"
+        app:layout_constraintStart_toEndOf="@+id/ppp"
+        app:layout_constraintTop_toTopOf="@+id/ppp" />
 
     <ImageButton
         android:id="@+id/editProfile_editImg"
@@ -100,6 +86,17 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dp"
         android:src="@android:drawable/ic_menu_edit"
-        app:layout_constraintBottom_toBottomOf="@+id/event_image"
-        app:layout_constraintEnd_toEndOf="@+id/event_image" />
+        app:layout_constraintBottom_toBottomOf="@+id/profile_img"
+        app:layout_constraintEnd_toEndOf="@+id/profile_img" />
+
+    <EditText
+        android:id="@+id/editProfile_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_phone"
+        app:layout_constraintStart_toEndOf="@+id/profile_phone"
+        app:layout_constraintTop_toTopOf="@+id/profile_phone" />
 </androidx.constraintlayout.widget.ConstraintLayout>

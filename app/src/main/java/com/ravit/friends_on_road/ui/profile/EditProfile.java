@@ -43,7 +43,7 @@ public class EditProfile extends Fragment {
         EditText name=view.findViewById(R.id.editProfile_name);
         EditText phone=view.findViewById(R.id.editProfile_phone);
         EditText email=view.findViewById(R.id.editProfile_email);
-        Button saveBtn = view.findViewById(R.id.eventDetails_editBtn);
+        Button saveBtn = view.findViewById(R.id.editProfile_saveBtn);
         ImageButton editImageBtn = view.findViewById(R.id.editProfile_editImg);
 
 
@@ -56,7 +56,7 @@ public class EditProfile extends Fragment {
 
 
 
-        img=view.findViewById(R.id.event_image);
+        img=view.findViewById(R.id.profile_img);
 
 
         String userEmail = EditProfileArgs.fromBundle(getArguments()).getEmail();

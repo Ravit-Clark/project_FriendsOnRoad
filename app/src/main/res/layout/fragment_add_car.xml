@@ -7,39 +7,32 @@
     tools:context=".ui.myCars.AddCar">
 
 
-    <ImageView
-        android:id="@+id/editCar_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/car10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:text="Model"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editCar_img" />
-
     <EditText
-        android:id="@+id/editCar_model"
+        android:id="@+id/addCar_model"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/textView11"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
+        app:layout_constraintBottom_toBottomOf="@+id/textttt"
+        app:layout_constraintStart_toEndOf="@+id/textttt"
+        app:layout_constraintTop_toTopOf="@+id/textttt"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/addCar_places"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/text44"
+        app:layout_constraintStart_toEndOf="@+id/text44"
+        app:layout_constraintTop_toTopOf="@+id/text44"
+        app:layout_constraintVertical_bias="0.961" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/text22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -48,47 +41,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
-    <EditText
-        android:id="@+id/editCar_licensePlateNum"
+    <TextView
+        android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/textView12"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toTopOf="@+id/textView12" />
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:text="licensePlateNum"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textttt" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/text33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:text="Engine capacity"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-    <EditText
-        android:id="@+id/editCar_engine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:text="number of places"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/text22" />
 
     <Button
         android:id="@+id/addCar_addBtn"
@@ -99,48 +70,74 @@
         android:text="add car"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addCar_places" />
+        app:layout_constraintTop_toBottomOf="@+id/addCar_places"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/text44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:text="number of places"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text33" />
 
     <EditText
-        android:id="@+id/addCar_places"
+        android:id="@+id/addCar_engine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/textView14"
-        app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toTopOf="@+id/textView14" />
+        app:layout_constraintBottom_toBottomOf="@+id/text33"
+        app:layout_constraintStart_toEndOf="@+id/text33"
+        app:layout_constraintTop_toTopOf="@+id/text33"
+        app:layout_constraintVertical_bias="0.346" />
+
+    <EditText
+        android:id="@+id/addCar_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/text22"
+        app:layout_constraintStart_toEndOf="@+id/text22"
+        app:layout_constraintTop_toTopOf="@+id/text22"
+        app:layout_constraintVertical_bias="0.269" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/textttt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:text="licensePlateNum"
+        android:layout_marginTop="300dp"
+        android:text="Model"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/addCar_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/car10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/addCar_licensePlateNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/textView16"
-        app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toTopOf="@+id/textView16" />
+        app:layout_constraintTop_toTopOf="@+id/textView16"
+        tools:layout_editor_absoluteX="184dp" />
 
-    <ImageButton
-        android:id="@+id/addCar_addImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="3dp"
-        android:src="@android:drawable/ic_input_add"
-        app:layout_constraintBottom_toBottomOf="@+id/editCar_img"
-        app:layout_constraintEnd_toEndOf="@+id/editCar_img" />
 </androidx.constraintlayout.widget.ConstraintLayout>

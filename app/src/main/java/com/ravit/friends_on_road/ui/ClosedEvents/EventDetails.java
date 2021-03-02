@@ -3,7 +3,6 @@ package com.ravit.friends_on_road.ui.ClosedEvents;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.ravit.friends_on_road.Model.Car;
 import com.ravit.friends_on_road.Model.Event;
 import com.ravit.friends_on_road.Model.Model;
 import com.ravit.friends_on_road.R;
-import com.ravit.friends_on_road.ui.myCars.CarDetailsArgs;
-import com.ravit.friends_on_road.ui.myCars.CarDetailsDirections;
-import com.ravit.friends_on_road.ui.myCars.EditCarDirections;
 import com.squareup.picasso.Picasso;
 
 public class EventDetails extends Fragment {
@@ -31,10 +26,10 @@ ImageView img;
         View view= inflater.inflate(R.layout.fragment_event_details, container, false);
 
         EditText type = view.findViewById(R.id.eventDetails_type);
-        EditText description = view.findViewById(R.id.eventDetails_description);
+        EditText description = view.findViewById(R.id.eventDetails_descripion);
         EditText location = view.findViewById(R.id.eventDetails_location);
         EditText car = view.findViewById(R.id.eventDetails_car);
-        EditText status = view.findViewById(R.id.eventDetails_status);
+        EditText status = view.findViewById(R.id.evenDetails_status);
         final ImageButton editEventBtn=view.findViewById(R.id.eventDetails_editBtn);
         img=view.findViewById(R.id.eventDetails_img);
 

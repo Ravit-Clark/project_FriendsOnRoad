@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/textttt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -34,19 +34,19 @@
         android:layout_marginStart="30dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/textView11"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
+        app:layout_constraintBottom_toBottomOf="@+id/textttt"
+        app:layout_constraintStart_toEndOf="@+id/textttt"
+        app:layout_constraintTop_toTopOf="@+id/textttt" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/text22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:text="licensePlateNum"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/textttt" />
 
     <EditText
         android:id="@+id/editCar_licensePlateNum"
@@ -55,19 +55,29 @@
         android:layout_marginStart="30dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/textView12"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toTopOf="@+id/textView12" />
+        app:layout_constraintBottom_toBottomOf="@+id/text22"
+        app:layout_constraintStart_toEndOf="@+id/text22"
+        app:layout_constraintTop_toTopOf="@+id/text22" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/text33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:text="Year of manufacture"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/text22" />
+
+    <TextView
+        android:id="@+id/text44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:text="Engine capacity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text33" />
 
     <EditText
         android:id="@+id/editCar_engine"
@@ -76,30 +86,9 @@
         android:layout_marginStart="30dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:text="Engine capacity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-    <EditText
-        android:id="@+id/editCar_EngineCapacity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/textView14"
-        app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toTopOf="@+id/textView14" />
+        app:layout_constraintBottom_toBottomOf="@+id/text44"
+        app:layout_constraintStart_toEndOf="@+id/text44"
+        app:layout_constraintTop_toTopOf="@+id/text44" />
 
     <TextView
         android:id="@+id/textView17"
@@ -109,7 +98,7 @@
         android:layout_marginTop="40dp"
         android:text="Several places"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/text44" />
 
     <EditText
         android:id="@+id/editCar_places"
@@ -131,4 +120,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editCar_places" />
+
+    <EditText
+        android:id="@+id/editCar_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/text33"
+        app:layout_constraintStart_toEndOf="@+id/text33"
+        app:layout_constraintTop_toTopOf="@+id/text33" />
 </androidx.constraintlayout.widget.ConstraintLayout>

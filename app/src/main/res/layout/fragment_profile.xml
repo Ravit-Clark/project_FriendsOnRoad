@@ -2,12 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_email"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profile.Profile">
 
     <ImageView
-        android:id="@+id/event_image"
+        android:id="@+id/profile_img"
         android:layout_width="231dp"
         android:layout_height="187dp"
         android:layout_marginTop="40dp"
@@ -17,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/eventDetails_type"
+        android:id="@+id/profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -25,10 +26,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_image" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_img" />
 
     <TextView
-        android:id="@+id/eventDetails_description"
+        android:id="@+id/profile_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -36,10 +37,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventDetails_type" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
     <TextView
-        android:id="@+id/eventDetails_location"
+        android:id="@+id/ppp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -47,33 +48,18 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventDetails_description" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_phone" />
 
     <Button
-        android:id="@+id/eventDetails_editBtn"
+        android:id="@+id/profile_editBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="36dp"
         android:text="EDIT PROFILE"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventDetails_location" />
+        app:layout_constraintTop_toBottomOf="@+id/ppp" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="143dp"
-        android:layout_height="132dp"
-        android:src="@drawable/head"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="500dp" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EDIT PROFILE"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="613dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

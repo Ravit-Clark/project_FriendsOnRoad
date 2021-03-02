@@ -27,14 +27,14 @@ public class CarDetails extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_car_details, container, false);
 
-        EditText model = view.findViewById(R.id.editCar_model);
-        EditText carNum = view.findViewById(R.id.editCar_licensePlateNum);
-        EditText year = view.findViewById(R.id.editCar_licensePlateNum);
-        EditText engine = view.findViewById(R.id.editCar_engine);
-        EditText places = view.findViewById(R.id.editCar_places);
+        EditText model = view.findViewById(R.id.carDtails_model);
+        EditText carNum = view.findViewById(R.id.carDetails_licensePlateNum);
+        EditText year = view.findViewById(R.id.carDetails_year);
+        EditText engine = view.findViewById(R.id.carDetails_engine);
+        EditText places = view.findViewById(R.id.carDetails_places);
         final ImageButton editCarBtn=view.findViewById(R.id.carDetails_editCarBtn);
         //editCarBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_carDetails_to_editCar));
-        img=view.findViewById(R.id.event_image);
+        img=view.findViewById(R.id.carDetails_img);
 
 
         String num = CarDetailsArgs.fromBundle(getArguments()).getLicensePlateNum();

@@ -31,11 +31,11 @@ public class Profile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_profile, container, false);
-        name = view.findViewById(R.id.eventDetails_type);
-        phone = view.findViewById(R.id.eventDetails_description);
-        email = view.findViewById(R.id.eventDetails_location);
-        editProfileBtn = view.findViewById(R.id.eventDetails_editBtn);
-        img=view.findViewById(R.id.event_image);
+        name = view.findViewById(R.id.profile_name);
+        phone = view.findViewById(R.id.profile_phone);
+        email = view.findViewById(R.id.profile_email);
+        editProfileBtn = view.findViewById(R.id.profile_editBtn);
+        img=view.findViewById(R.id.profile_img);
 
         String userEmail=Model.instance.getUserEmail();
         Log.d("TAG","email: "+userEmail);

@@ -75,7 +75,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="40dp"
-        android:text="SIGN UP"
+        android:text="Not registered yet? Sign up here"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,11 +84,11 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="466dp"
-        android:layout_height="291dp"
+        android:layout_width="349dp"
+        android:layout_height="282dp"
+        android:foreground="@drawable/logo12"
         android:src="@drawable/logo10"
-        tools:layout_editor_absoluteX="-28dp"
-        tools:layout_editor_absoluteY="-3dp"
-        tools:srcCompat="@drawable/logo12" />
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="6dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
