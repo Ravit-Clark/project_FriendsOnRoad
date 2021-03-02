@@ -55,7 +55,7 @@ public class login extends Fragment {
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w("TAG", "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(getContext(),"Error",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(),"Error!",Toast.LENGTH_SHORT).show();
 
                                 }
                             }

@@ -30,14 +30,12 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         final ImageButton addEvent = view.findViewById(R.id.home_addEventBtn);
         final ImageButton needHelp = view.findViewById(R.id.home_needHelp);
-        final ImageButton myFault = view.findViewById(R.id.home_myFault);
-        final ImageButton garages = view.findViewById(R.id.home_garagesBtn);
+
 
 
 
         String userEmail = HomeFragmentArgs.fromBundle(getArguments()).getEmail();
         //Log.d("TAG","user email is "+ userEmail);
-        email.setText(userEmail);
 
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +45,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        //needHelp.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_home_to_helpListFragment));
+        needHelp.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_home_to_needHelp));
         //garages.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_home_to_garagesListFragment));
 //        Model.instance.getUser(userEmail,new Model.GetUserListener() {
 //            @Override
@@ -57,13 +55,6 @@ public class HomeFragment extends Fragment {
 //                name.setText(user.getName());
 //            }
 //        });
-        addEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HomeFragmentDirections.ActionNavHomeToAddEvent action=HomeFragmentDirections.actionNavHomeToAddEvent(userEmail);
-                Navigation.findNavController(view).navigate(action);
-            }
-        });
 
 
 

@@ -11,7 +11,7 @@
         android:id="@+id/closedEvents_eventsList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#E4E6E6"
+        android:background="@drawable/head"
         android:textFilterEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
