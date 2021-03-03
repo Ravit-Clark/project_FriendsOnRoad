@@ -123,8 +123,8 @@ public class Model {
     public interface GetEventByEventNumListener {
         void onComplete(Event event);
     }
-    public void getEventByEventNum(final String event,GetEventByEventNumListener listener) {
-        ModelFirebase_Event.getEventByEventNum(event,listener);
+    public void getEventByEventNum(final String num,GetEventByEventNumListener listener) {
+        ModelFirebase_Event.getEventByNumOfSpecificEvent(num,listener);
     }
 
 

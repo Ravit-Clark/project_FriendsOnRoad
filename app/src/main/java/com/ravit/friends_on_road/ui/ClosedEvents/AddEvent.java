@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
 import android.view.Display;
@@ -31,6 +32,7 @@ import com.ravit.friends_on_road.Model.Event;
 import com.ravit.friends_on_road.Model.Model;
 import com.ravit.friends_on_road.Model.ModelFirebase;
 import com.ravit.friends_on_road.R;
+import com.ravit.friends_on_road.loginDirections;
 import com.ravit.friends_on_road.ui.home.HomeFragmentArgs;
 
 import java.util.LinkedList;
@@ -105,6 +107,8 @@ public class AddEvent extends Fragment  {
                                 @Override
                                 public void onComplete(boolean success) {
                                     Toast.makeText(getContext(),"Image Saved!",Toast.LENGTH_SHORT).show();
+                                    AddEventDirections.ActionAddEventToNavHome action = AddEventDirections.actionAddEventToNavHome(ownEmail);
+                                    Navigation.findNavController(view).navigate(action);
                                 }
                             });
 

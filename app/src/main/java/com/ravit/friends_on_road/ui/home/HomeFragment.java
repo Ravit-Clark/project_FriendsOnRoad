@@ -33,9 +33,10 @@ public class HomeFragment extends Fragment {
 
 
 
+        String userEmail=Model.instance.getUserEmail();
 
-        String userEmail = HomeFragmentArgs.fromBundle(getArguments()).getEmail();
-        //Log.d("TAG","user email is "+ userEmail);
+        //String userEmail = HomeFragmentArgs.fromBundle(getArguments()).getEmail();
+        Log.d("TAG","user email is "+ userEmail);
 
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override

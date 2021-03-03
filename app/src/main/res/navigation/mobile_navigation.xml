@@ -17,7 +17,7 @@
             android:id="@+id/action_nav_home_to_eventDetails"
             app:destination="@id/eventDetails" />
         <argument
-            android:name="email"
+            android:name="emailOwner"
             app:argType="string" />
         <action
             android:id="@+id/action_nav_home_to_needHelp"
@@ -95,6 +95,9 @@
         <argument
             android:name="emailOwner"
             app:argType="string" />
+        <action
+            android:id="@+id/action_addEvent_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
     <fragment
         android:id="@+id/nav_closedEventsList"
