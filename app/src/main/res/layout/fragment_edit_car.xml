@@ -131,4 +131,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/text33"
         app:layout_constraintStart_toEndOf="@+id/text33"
         app:layout_constraintTop_toTopOf="@+id/text33" />
+
+    <ImageButton
+        android:id="@+id/editCar_editImgBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="34dp"
+        android:src="@android:drawable/ic_menu_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/editCar_img"
+        app:layout_constraintEnd_toEndOf="@+id/editCar_img" />
 </androidx.constraintlayout.widget.ConstraintLayout>

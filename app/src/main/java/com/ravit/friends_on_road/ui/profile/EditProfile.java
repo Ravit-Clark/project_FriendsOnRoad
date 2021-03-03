@@ -45,7 +45,7 @@ public class EditProfile extends Fragment {
         EditText email=view.findViewById(R.id.editProfile_email);
         Button saveBtn = view.findViewById(R.id.editProfile_saveBtn);
         ImageButton editImageBtn = view.findViewById(R.id.editProfile_editImg);
-
+        img=view.findViewById(R.id.profile_img);
 
         editImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +56,7 @@ public class EditProfile extends Fragment {
 
 
 
-        img=view.findViewById(R.id.profile_img);
+
 
 
         String userEmail = EditProfileArgs.fromBundle(getArguments()).getEmail();

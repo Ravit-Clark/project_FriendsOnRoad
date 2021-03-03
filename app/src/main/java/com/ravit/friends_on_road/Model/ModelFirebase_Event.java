@@ -57,12 +57,13 @@ public class ModelFirebase_Event {
         data.put("type",event.getType());
         data.put("description",event.getDescription());
         data.put("location",event.getLocaion());
-        data.put("car",event.getCar());
+        //data.put("car",event.getCar());
         data.put("ownerEmail",event.getEmailOwner());
         data.put("status",event.getStatus());
+        data.put("specificNumEvent",event.getNumOfSpecificEvent());
 
 
-        db.collection("events").document(event.getEventNum()).set(data)
+        db.collection("events").document(event.getNumOfSpecificEvent()).set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -89,7 +90,7 @@ public class ModelFirebase_Event {
                     List<Event> eventList = new LinkedList<Event>();
                     for (QueryDocumentSnapshot doc: task.getResult()) {
                         Event event = doc.toObject(Event.class);
-                        if(event.getStatus().equals("open"))
+                        if(event.getStatus().equals("open")&&event.getEmailOwner().equals(email))
                             eventList.add(event);
                     }
                     listener.onComplete(eventList);
@@ -103,20 +104,24 @@ public class ModelFirebase_Event {
 
     }
 
-    public static void getEventByEventNum(String event, Model.GetEventByEventNumListener listener) {
+    public static void getEventByNumOfSpecificEvent(String numOfSpecificEvent, Model.GetEventByEventNumListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("cars").document(event).get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()){
-                            Event event1 = task.getResult().toObject(Event.class);
-                            listener.onComplete(event1);
-                        }else{
-                            listener.onComplete(null);
-                        }
+        db.collection("events").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot doc : task.getResult()) {
+                        Event event = doc.toObject(Event.class);
+                        if (event.getNumOfSpecificEvent().equals(numOfSpecificEvent))
+                            listener.onComplete(event);
+
                     }
-                });
+                }else{
+                    Log.d("TAG", "failed getting events ");
+                    listener.onComplete(null);
+                }
+            }
+        });
 
 
     }

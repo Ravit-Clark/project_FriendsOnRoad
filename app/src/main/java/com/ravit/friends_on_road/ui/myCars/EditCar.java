@@ -14,12 +14,14 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ravit.friends_on_road.Model.Car;
@@ -31,8 +33,8 @@ import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 public class EditCar extends Fragment {
-    ImageButton img;
-
+    ImageView img;
+    String emailOwn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,12 +43,14 @@ public class EditCar extends Fragment {
 
         EditText model = view.findViewById(R.id.editCar_model);
         EditText carNum = view.findViewById(R.id.editCar_licensePlateNum);
-        EditText year = view.findViewById(R.id.editCar_licensePlateNum);
-        EditText engine = view.findViewById(R.id.addCar_engine);
+        EditText year = view.findViewById(R.id.editCar_year);
+        EditText engine = view.findViewById(R.id.editCar_engine);
         EditText places = view.findViewById(R.id.editCar_places);
         Button saveBtn = view.findViewById(R.id.editCar_saveBtn);
+
+        ImageButton editImg = view.findViewById(R.id.editCar_editImgBtn);
         img=view.findViewById(R.id.editCar_img);
-        img.setOnClickListener(new View.OnClickListener() {
+        editImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 editImage();
@@ -57,12 +61,19 @@ public class EditCar extends Fragment {
 
         Model.instance.getCarByNum(num, new Model.GetCarByNumListener(){
             @Override
-            public void onComplete(Car car) {
+            public void onComplete(Car _car) {
+                Car car=_car;
+                Log.d("TAG","model: " + car.getModel());
                 model.setText(car.getModel());
+                Log.d("TAG","num: " + car.getLicensePlateNum());
                 carNum.setText(car.getLicensePlateNum());
+                Log.d("TAG","year: " + car.getYear());
                 year.setText(car.getYear());
+                Log.d("TAG","engine: " + car.getEngine());
                 engine.setText(car.getEngine());
+                Log.d("TAG","places: " + car.getPlaces());
                 places.setText(car.getPlaces());
+                emailOwn=car.getEmailOwner();
 
             }
         });
@@ -71,6 +82,7 @@ public class EditCar extends Fragment {
             @Override
             public void onClick(View v) {
                 Car car=new Car();
+                car.setEmailOwner(emailOwn);
                 car.setModel(model.getText().toString());
                 car.setLicensePlateNum(carNum.getText().toString());
                 car.setYear(year.getText().toString());
@@ -84,22 +96,21 @@ public class EditCar extends Fragment {
                             Toast.makeText(getContext(),"Save Image Filed!",Toast.LENGTH_SHORT).show();
                         }else{
                             car.setImgUrl(url);
-                            Model.instance.addCar(car, new Model.AddCarListener() {
-                                @Override
-                                public void onComplete(boolean success) {
-                                    Toast.makeText(getContext(),"Image Saved!",Toast.LENGTH_SHORT).show();
-                                }
-                            });
-
-
+                            Toast.makeText(getContext(),"Image Saved!",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
                 Model.instance.updateCar(car, new Model.UpdateCarListener() {
                     @Override
                     public void onComplete(boolean success) {
-                        EditCarDirections.ActionEditCarToCarDetails action = EditCarDirections.actionEditCarToCarDetails(carNum.getText().toString());
-                        Navigation.findNavController(view).navigate(action);
+                        if(success) {
+                            Toast.makeText(getContext(), "Details Saved!", Toast.LENGTH_SHORT).show();
+                            EditCarDirections.ActionEditCarToCarDetails action = EditCarDirections.actionEditCarToCarDetails(carNum.getText().toString());
+                            Navigation.findNavController(view).navigate(action);
+                        }
+                        else{
+                            Toast.makeText(getContext(),"error save",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 

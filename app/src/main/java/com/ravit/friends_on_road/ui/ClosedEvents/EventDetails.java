@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ravit.friends_on_road.Model.Event;
 import com.ravit.friends_on_road.Model.Model;
@@ -25,23 +26,23 @@ ImageView img;
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_event_details, container, false);
 
-        EditText type = view.findViewById(R.id.eventDetails_type);
-        EditText description = view.findViewById(R.id.eventDetails_descripion);
-        EditText location = view.findViewById(R.id.eventDetails_location);
-        EditText car = view.findViewById(R.id.eventDetails_car);
-        EditText status = view.findViewById(R.id.evenDetails_status);
+        TextView type = view.findViewById(R.id.eventDetails_type);
+        TextView description = view.findViewById(R.id.eventDetails_descripion);
+        TextView location = view.findViewById(R.id.eventDetails_location);
+       // TextView car = view.findViewById(R.id.eventDetails_car);
+        TextView status = view.findViewById(R.id.evenDetails_status);
         final ImageButton editEventBtn=view.findViewById(R.id.eventDetails_editBtn);
         img=view.findViewById(R.id.eventDetails_img);
 
 
-        String eventNum =EventDetailsArgs.fromBundle(getArguments()).getEventNum();
+        String eventNum =EventDetailsArgs.fromBundle(getArguments()).getNumOfSpecificEvent();
         Model.instance.getEventByEventNum(eventNum, new Model.GetEventByEventNumListener() {
             @Override
             public void onComplete(Event event) {
                 type.setText(event.getType());
                 description.setText(event.getDescription());
                 location.setText(event.getLocaion());
-                car.setText(event.getCar());
+                //car.setText(event.getCar());
                 status.setText(event.getStatus());
                 img.setTag(event.getImgUrl());
                 if (event.getImgUrl() != null && event.getImgUrl() != ""){

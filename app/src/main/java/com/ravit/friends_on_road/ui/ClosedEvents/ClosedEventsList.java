@@ -56,7 +56,7 @@ public class ClosedEventsList extends Fragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                ClosedEventsListDirections.ActionNavClosedEventsListToEventDetails action = ClosedEventsListDirections.actionNavClosedEventsListToEventDetails(data.get(i).getEventNum());
+                ClosedEventsListDirections.ActionNavClosedEventsListToEventDetails action = ClosedEventsListDirections.actionNavClosedEventsListToEventDetails(data.get(i).getNumOfSpecificEvent());
                 Navigation.findNavController(view).navigate(action);
             }
         });

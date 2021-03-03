@@ -122,12 +122,13 @@
         android:name="com.ravit.friends_on_road.ui.myCars.EditCar"
         android:label="fragment_edit_car"
         tools:layout="@layout/fragment_edit_car" >
-        <action
-            android:id="@+id/action_editCar_to_carDetails"
-            app:destination="@id/carDetails" />
         <argument
             android:name="licensePlateNum"
             app:argType="string" />
+        <action
+            android:id="@+id/action_editCar_to_carDetails"
+            app:destination="@id/carDetails"
+            app:popUpTo="@id/carDetails" />
     </fragment>
     <fragment
         android:id="@+id/addCar"
@@ -147,7 +148,7 @@
             android:id="@+id/action_eventDetails_to_editMyOpenEvent"
             app:destination="@id/editMyOpenEvent" />
         <argument
-            android:name="eventNum"
+            android:name="numOfSpecificEvent"
             app:argType="string" />
     </fragment>
     <fragment

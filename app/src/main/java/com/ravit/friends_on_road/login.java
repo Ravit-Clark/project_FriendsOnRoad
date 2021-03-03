@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,6 +33,7 @@ public class login extends Fragment {
         View view= inflater.inflate(R.layout.fragment_login, container, false);
         final EditText email = view.findViewById(R.id.login_email);
         final EditText pass = view.findViewById(R.id.login_passWord);
+        //final ProgressBar pBar = view.findViewById(R.id.signUp_progressBar);
 
         Button loginBtn = view.findViewById(R.id.login_btnLogin);
 

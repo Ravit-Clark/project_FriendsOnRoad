@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -39,7 +40,8 @@ import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 
-public class AddEvent extends Fragment implements AdapterView.OnItemSelectedListener {
+public class AddEvent extends Fragment  {
+    //implements AdapterView.OnItemSelectedListener
     String[] items;
     List<Car> data;
     ImageView img;
@@ -53,26 +55,27 @@ public class AddEvent extends Fragment implements AdapterView.OnItemSelectedList
         EditText description = view.findViewById(R.id.addEvent_description);
         EditText location = view.findViewById(R.id.addEvent_location);
         Button saveBtn = view.findViewById(R.id.addEvent_saveBtn);
+        ImageButton addImg=view.findViewById(R.id.addEvent_addImgBtn);
         img = view.findViewById(R.id.addEvent_img);
-        img.setOnClickListener(new View.OnClickListener() {
+        addImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 editImage();
             }
         });
         String ownEmail = AddEventArgs.fromBundle(getArguments()).getEmailOwner();
-        Spinner dropdown = view.findViewById(R.id.addEvent_carsSpinner);
+        //Spinner dropdown = view.findViewById(R.id.addEvent_carsSpinner);
 
-        Model.instance.getCarsByEmailOwner(ownEmail, new Model.GetCarsByEmailOwnerListener() {
-            @Override
-            public void onComplete(List<Car> _data) {
-                data = _data;
-                items = new String[data.size()];
-                for (int i = 0; i < data.size(); i++) {
-                    items[i] = data.get(i).getLicensePlateNum();
-                }
-            }
-        });
+//        Model.instance.getCarsByEmailOwner(ownEmail, new Model.GetCarsByEmailOwnerListener() {
+//            @Override
+//            public void onComplete(List<Car> _data) {
+//                data = _data;
+//                items = new String[data.size()];
+//                for (int i = 0; i < data.size(); i++) {
+//                    items[i] = data.get(i).getLicensePlateNum();
+//                }
+//            }
+//        });
 
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, items);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -87,8 +90,11 @@ public class AddEvent extends Fragment implements AdapterView.OnItemSelectedList
                 event.setLocaion(location.getText().toString());
                 event.setDescription(description.getText().toString());
                 event.setEmailOwner(ownEmail);
+                event.openEvent();//status-open
+                event.setNumOfSpecificEvent(event.getEventNum());
+                event.PromoteEventNum();
                 Bitmap bitmap = ((BitmapDrawable)img.getDrawable()).getBitmap();
-                Model.instance.uploadImage(bitmap, event.getEventNum(), new ModelFirebase.UploadImageListener() {
+                Model.instance.uploadImage(bitmap, event.getNumOfSpecificEvent(), new ModelFirebase.UploadImageListener() {
                     @Override
                     public void onComplete(String url) {
                         if (url == null){
@@ -113,26 +119,26 @@ public class AddEvent extends Fragment implements AdapterView.OnItemSelectedList
         return view;
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (position) {
-            case 0:
-                // Whatever you want to happen when the first item gets selected
-                break;
-            case 1:
-                // Whatever you want to happen when the second item gets selected
-                break;
-            case 2:
-                // Whatever you want to happen when the thrid item gets selected
-                break;
+//    @Override
+//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//        switch (position) {
+//            case 0:
+//                // Whatever you want to happen when the first item gets selected
+//                break;
+//            case 1:
+//                // Whatever you want to happen when the second item gets selected
+//                break;
+//            case 2:
+//                // Whatever you want to happen when the thrid item gets selected
+//                break;
+//
+//        }
+//    }
 
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        data.get(1).getLicensePlateNum();
-    }
+ //   @Override
+//    public void onNothingSelected(AdapterView<?> parent) {
+//        data.get(1).getLicensePlateNum();
+//    }
 
 
     void editImage() {
