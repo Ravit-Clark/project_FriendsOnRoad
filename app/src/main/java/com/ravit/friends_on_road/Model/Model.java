@@ -2,6 +2,8 @@ package com.ravit.friends_on_road.Model;
 
 import android.graphics.Bitmap;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.List;
 
 public class Model {
@@ -22,16 +24,11 @@ public class Model {
         return null;
    }
 
-//    public interface CreateUserListener{
-//        void onComplete(boolean success);
-//    }
-//    public void createUser(User user, CreateUserListener listener) {
-//        modelFirebase.createUser(user, listener);
-//    }
-
-    public interface GetUserEmailListener{
-        void onComplete(User user);
+    public FirebaseUser getCurrentUser() {
+        return modelFirebase.getCurrentUser();
     }
+
+
     public String getUserEmail() {
         return modelFirebase.getUserEmail();
     }

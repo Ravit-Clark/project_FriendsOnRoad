@@ -78,6 +78,10 @@ public class ModelFirebase {
 //        });
 //    }
 
+    public static FirebaseUser getCurrentUser() {
+        FirebaseAuth fauth=FirebaseAuth.getInstance();
+        return fauth.getCurrentUser();
+    }
 
     public void getUser(String email, Model.GetUserListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();

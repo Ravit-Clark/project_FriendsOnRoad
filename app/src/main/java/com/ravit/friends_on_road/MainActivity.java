@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.ravit.friends_on_road.Model.Model;
+import com.ravit.friends_on_road.Model.User;
 
 
 import androidx.navigation.NavController;
@@ -20,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
-
+    TextView name;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -29,9 +31,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+        View v=navigationView.inflateHeaderView(R.layout.nav_header_main);
+        name=v.findViewById(R.id.navHeader_name);
+
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -46,6 +53,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    public void putNameUser() {
+        String email= Model.instance.getCurrentUser().getEmail();
+        Model.instance.getUser(email, new Model.GetUserListener() {
+            @Override
+            public void onComplete(User user) {
+                name.setText(user.getName());
+            }
+        });
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
