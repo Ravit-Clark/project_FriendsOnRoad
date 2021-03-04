@@ -37,7 +37,7 @@ public class MyCars extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_my_cars, container, false);
         list = view.findViewById(R.id.myCars_carList);
-        ImageButton add=view.findViewById(R.id.evenClosedList_addBtn);
+        ImageButton add=view.findViewById(R.id.myCars_addBtn);
         add.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_myCars_to_addCar));
 
         String ownerEmail=Model.instance.getUserEmail();
@@ -91,13 +91,13 @@ public class MyCars extends Fragment {
             }
 
             Car car = data.get(i);
-            TextView model = view.findViewById(R.id.eventRow_type);
-            TextView num = view.findViewById(R.id.eventRow_location);
+            TextView model = view.findViewById(R.id.carRow_model);
+            TextView num = view.findViewById(R.id.carRow_num);
 
             model.setText(data.get(i).getModel());
             num.setText(data.get(i).getYear());
 
-            ImageView imagev = view.findViewById(R.id.eventRow_image);
+            ImageView imagev = view.findViewById(R.id.carRow_image);
             imagev.setTag(car.getImgUrl());
             if (car.getImgUrl() != null && car.getImgUrl() != ""){
                 if (car.getImgUrl() == imagev.getTag()) {

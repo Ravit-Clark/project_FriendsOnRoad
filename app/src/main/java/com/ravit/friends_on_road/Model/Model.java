@@ -115,8 +115,8 @@ public class Model {
     public interface GetAllEventsOpenListener {
         void onComplete(List<Event> data);
     }
-    public void getAllEventsOpen(final String email,GetAllEventsOpenListener listener) {
-        ModelFirebase_Event.getAllEventsOpen(email,listener);
+    public void getAllEventsOpen(GetAllEventsOpenListener listener) {
+        ModelFirebase_Event.getAllEventsOpen(listener);
     }
 
 
@@ -125,6 +125,31 @@ public class Model {
     }
     public void getEventByEventNum(final String num,GetEventByEventNumListener listener) {
         ModelFirebase_Event.getEventByNumOfSpecificEvent(num,listener);
+    }
+
+
+//////////Event Num Run//////////////////
+
+    public interface AddNumRunListener{
+        void onComplete(boolean success);
+    }
+    public void addNumRun(EventsNumRun numRun,AddNumRunListener listener){
+        ModelFirebase_EventNumRun.addNumRun(numRun,listener);
+    }
+
+    public interface GetNumRunListener{
+        void onComplete(EventsNumRun numRun);
+    }
+    public void getNumRun(GetNumRunListener listener){
+        ModelFirebase_EventNumRun.getNumRun(listener);
+    }
+
+
+    public interface UpdateNumRunListener {
+        void onComplete(boolean success);
+    }
+    public void updateNumRun(final String numRun,UpdateNumRunListener listener) {
+        ModelFirebase_EventNumRun.updateNumRun(numRun,listener);
     }
 
 

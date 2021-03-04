@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_nav_home_to_addEvent"
             app:destination="@id/addEvent" />
-        <action
-            android:id="@+id/action_nav_home_to_eventDetails"
-            app:destination="@id/eventDetails" />
         <argument
             android:name="emailOwner"
             app:argType="string" />
@@ -147,9 +144,6 @@
         android:name="com.ravit.friends_on_road.ui.ClosedEvents.EventDetails"
         android:label="fragment_event_details"
         tools:layout="@layout/fragment_event_details" >
-        <action
-            android:id="@+id/action_eventDetails_to_editMyOpenEvent"
-            app:destination="@id/editMyOpenEvent" />
         <argument
             android:name="numOfSpecificEvent"
             app:argType="string" />
@@ -167,5 +161,9 @@
         android:id="@+id/needHelp"
         android:name="com.ravit.friends_on_road.NeedHelp"
         android:label="fragment_need_help"
-        tools:layout="@layout/fragment_need_help" />
+        tools:layout="@layout/fragment_need_help" >
+        <action
+            android:id="@+id/action_needHelp_to_eventDetails"
+            app:destination="@id/eventDetails" />
+    </fragment>
 </navigation>

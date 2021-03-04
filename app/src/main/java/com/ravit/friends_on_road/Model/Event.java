@@ -3,7 +3,7 @@ package com.ravit.friends_on_road.Model;
 public class Event {
 
     private String emailOwner;
-    private static String eventNum="1";
+    //private static String eventNum="1";
     private String numOfSpecificEvent;
     private String type;
     private String description;
@@ -14,13 +14,13 @@ public class Event {
 
 
 
-    public String getEventNum() {
-        return eventNum;
-    }
-
-    public void PromoteEventNum() {
-        this.eventNum=this.getEventNum()+"0";
-    }
+//    public static String getEventNum() {
+//        return eventNum;
+//    }
+//
+//    public void PromoteEventNum() {
+//        this.eventNum=this.getEventNum()+"0";
+//    }
 
 
     public String getNumOfSpecificEvent() {

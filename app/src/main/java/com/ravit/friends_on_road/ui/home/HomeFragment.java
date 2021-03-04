@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.ravit.friends_on_road.Model.EventsNumRun;
 import com.ravit.friends_on_road.Model.Model;
 import com.ravit.friends_on_road.Model.User;
 import com.ravit.friends_on_road.R;
@@ -30,7 +31,26 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         final ImageButton addEvent = view.findViewById(R.id.home_addEventBtn);
         final ImageButton needHelp = view.findViewById(R.id.home_needHelp);
+        TextView _numRun=view.findViewById(R.id.home_numRun);
 
+
+        Model.instance.getNumRun(new Model.GetNumRunListener() {
+            @Override
+            public void onComplete(EventsNumRun numRun) {
+                Log.d("TAG","num add: "+numRun.getNum());
+                _numRun.setText(numRun.getNum());
+            }
+
+        });
+
+
+//        Model.instance.addNumRun(num,new Model.AddNumRunListener(){
+//            @Override
+//            public void onComplete(boolean success) {
+//                Log.d("TAG","num run: "+num.getNum());
+//                numRun.setText(num.getNum());
+//            }
+//        });
 
 
         String userEmail=Model.instance.getUserEmail();

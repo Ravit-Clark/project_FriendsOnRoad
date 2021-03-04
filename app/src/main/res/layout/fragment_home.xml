@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ho"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -51,8 +52,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="331dp"
-        android:layout_height="195dp"
+        android:layout_width="325dp"
+        android:layout_height="172dp"
         android:src="@drawable/logo10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,5 +79,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.65999997" />
+
+    <TextView
+        android:id="@+id/home_numRun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="num"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.821" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

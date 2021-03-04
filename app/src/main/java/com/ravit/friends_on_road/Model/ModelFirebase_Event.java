@@ -81,7 +81,7 @@ public class ModelFirebase_Event {
 
     }
 
-    public static void getAllEventsOpen(String email, Model.GetAllEventsOpenListener listener) {
+    public static void getAllEventsOpen(Model.GetAllEventsOpenListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("events").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -90,7 +90,7 @@ public class ModelFirebase_Event {
                     List<Event> eventList = new LinkedList<Event>();
                     for (QueryDocumentSnapshot doc: task.getResult()) {
                         Event event = doc.toObject(Event.class);
-                        if(event.getStatus().equals("open")&&event.getEmailOwner().equals(email))
+                        if(event.getStatus().equals("open"))
                             eventList.add(event);
                     }
                     listener.onComplete(eventList);
@@ -125,6 +125,9 @@ public class ModelFirebase_Event {
 
 
     }
+
+
+
 
 
     public interface UploadImageListener{

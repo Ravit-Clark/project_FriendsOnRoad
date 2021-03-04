@@ -8,7 +8,7 @@
     android:focusable="false">
 
     <ImageView
-        android:id="@+id/eventRow_image"
+        android:id="@+id/carRow_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="30dp"
@@ -20,17 +20,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/eventRow_type"
+        android:id="@+id/carRow_model"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
         android:layout_marginTop="20dp"
         android:text="model"
-        app:layout_constraintStart_toEndOf="@+id/eventRow_image"
+        app:layout_constraintStart_toEndOf="@+id/carRow_image"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/eventRow_location"
+        android:id="@+id/carRow_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
@@ -38,7 +38,7 @@
         android:layout_marginBottom="20dp"
         android:text="number"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/eventRow_image"
-        app:layout_constraintTop_toBottomOf="@+id/eventRow_type" />
+        app:layout_constraintStart_toEndOf="@+id/carRow_image"
+        app:layout_constraintTop_toBottomOf="@+id/carRow_model" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

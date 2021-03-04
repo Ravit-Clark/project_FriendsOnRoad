@@ -42,8 +42,8 @@ public class AddCar extends Fragment {
         EditText year = view.findViewById(R.id.addCar_licensePlateNum);
         EditText engine = view.findViewById(R.id.addCar_engine);
         EditText places = view.findViewById(R.id.addCar_places);
-        Button addBtn = view.findViewById(R.id.addCar_addBtn);
-        ImageButton addImg=view.findViewById(R.id.addCar_img);
+        Button saveBtn = view.findViewById(R.id.addCar_saveBtn);
+        ImageButton addImg=view.findViewById(R.id.addCar_addImgBtn);
         img=view.findViewById(R.id.addCar_img);
 
         addImg.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +54,7 @@ public class AddCar extends Fragment {
         });
 
 
-        addBtn.setOnClickListener(new View.OnClickListener() {
+        saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Car car= new Car();
@@ -65,7 +65,7 @@ public class AddCar extends Fragment {
                 car.setPlaces(places.getText().toString());
                 String ownerEmail=Model.instance.getUserEmail();
                 car.setEmailOwner(ownerEmail);
-                addBtn.setEnabled(false);
+                saveBtn.setEnabled(false);
 
                 Model.instance.addCar(car, new Model.AddCarListener(){
                     @Override

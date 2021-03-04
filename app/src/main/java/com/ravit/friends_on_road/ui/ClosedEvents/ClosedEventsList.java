@@ -11,17 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ravit.friends_on_road.Model.Car;
 import com.ravit.friends_on_road.Model.Event;
 import com.ravit.friends_on_road.Model.Model;
 import com.ravit.friends_on_road.R;
-import com.ravit.friends_on_road.ui.myCars.MyCars;
-import com.ravit.friends_on_road.ui.myCars.MyCarsDirections;
 import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
@@ -58,6 +54,7 @@ public class ClosedEventsList extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                 ClosedEventsListDirections.ActionNavClosedEventsListToEventDetails action = ClosedEventsListDirections.actionNavClosedEventsListToEventDetails(data.get(i).getNumOfSpecificEvent());
                 Navigation.findNavController(view).navigate(action);
+
             }
         });
 
@@ -96,13 +93,13 @@ public class ClosedEventsList extends Fragment {
             }
 
             Event event = data.get(i);
-            TextView type = view.findViewById(R.id.eventRow_type);
-            TextView location = view.findViewById(R.id.eventRow_location);
+            TextView type = view.findViewById(R.id.carRow_model);
+            TextView location = view.findViewById(R.id.carRow_num);
 
             type.setText(data.get(i).getType());
             location.setText(data.get(i).getLocaion());
 
-            ImageView imagev = view.findViewById(R.id.eventRow_image);
+            ImageView imagev = view.findViewById(R.id.carRow_image);
             imagev.setTag(event.getImgUrl());
             if (event.getImgUrl() != null && event.getImgUrl() != ""){
                 if (event.getImgUrl() == imagev.getTag()) {

@@ -14,28 +14,24 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
-import android.view.Display;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ravit.friends_on_road.Model.Car;
 import com.ravit.friends_on_road.Model.Event;
+import com.ravit.friends_on_road.Model.EventsNumRun;
 import com.ravit.friends_on_road.Model.Model;
 import com.ravit.friends_on_road.Model.ModelFirebase;
 import com.ravit.friends_on_road.R;
-import com.ravit.friends_on_road.loginDirections;
-import com.ravit.friends_on_road.ui.home.HomeFragmentArgs;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -47,6 +43,7 @@ public class AddEvent extends Fragment  {
     String[] items;
     List<Car> data;
     ImageView img;
+    String _numRun;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,6 +53,7 @@ public class AddEvent extends Fragment  {
         EditText type = view.findViewById(R.id.addEvent_type);
         EditText description = view.findViewById(R.id.addEvent_description);
         EditText location = view.findViewById(R.id.addEvent_location);
+        TextView numOfEvent=view.findViewById(R.id.addEvent_numOfEvent);
         Button saveBtn = view.findViewById(R.id.addEvent_saveBtn);
         ImageButton addImg=view.findViewById(R.id.addEvent_addImgBtn);
         img = view.findViewById(R.id.addEvent_img);
@@ -66,6 +64,17 @@ public class AddEvent extends Fragment  {
             }
         });
         String ownEmail = AddEventArgs.fromBundle(getArguments()).getEmailOwner();
+
+        Model.instance.getNumRun(new Model.GetNumRunListener() {
+            @Override
+            public void onComplete(EventsNumRun numRun) {
+                Log.d("TAG","num add: "+numRun.getNum());
+                numOfEvent.setText(numRun.getNum());
+                _numRun=numRun.getNum();
+            }
+
+        });
+
         //Spinner dropdown = view.findViewById(R.id.addEvent_carsSpinner);
 
 //        Model.instance.getCarsByEmailOwner(ownEmail, new Model.GetCarsByEmailOwnerListener() {
@@ -84,6 +93,7 @@ public class AddEvent extends Fragment  {
 //        dropdown.setAdapter(adapter);
 
 
+
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,29 +103,40 @@ public class AddEvent extends Fragment  {
                 event.setDescription(description.getText().toString());
                 event.setEmailOwner(ownEmail);
                 event.openEvent();//status-open
-                event.setNumOfSpecificEvent(event.getEventNum());
-                event.PromoteEventNum();
-                Bitmap bitmap = ((BitmapDrawable)img.getDrawable()).getBitmap();
-                Model.instance.uploadImage(bitmap, event.getNumOfSpecificEvent(), new ModelFirebase.UploadImageListener() {
+                event.setNumOfSpecificEvent(_numRun);
+
+                int numInt = Integer.parseInt(_numRun);
+                numInt++;
+                String newNum=String.valueOf(numInt);
+
+                Model.instance.updateNumRun(newNum, new Model.UpdateNumRunListener() {
                     @Override
-                    public void onComplete(String url) {
-                        if (url == null){
-                            Toast.makeText(getContext(),"Save Image Filed!",Toast.LENGTH_SHORT).show();
-                        }else{
-                            event.setImgUrl(url);
-                            Model.instance.addEvent(event, new Model.AddEventListener(){
-                                @Override
-                                public void onComplete(boolean success) {
-                                    Toast.makeText(getContext(),"Image Saved!",Toast.LENGTH_SHORT).show();
-                                    AddEventDirections.ActionAddEventToNavHome action = AddEventDirections.actionAddEventToNavHome(ownEmail);
-                                    Navigation.findNavController(view).navigate(action);
-                                }
-                            });
-
-
-                        }
+                    public void onComplete(boolean success) {
+                        Log.d("TAG","numRun Change- "+newNum);
                     }
                 });
+
+                Bitmap bitmap = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                Model.instance.addEvent(event, new Model.AddEventListener(){
+                    @Override
+                    public void onComplete(boolean success) {
+                        Model.instance.uploadImage(bitmap, event.getNumOfSpecificEvent(), new ModelFirebase.UploadImageListener() {
+                            @Override
+                            public void onComplete(String url) {
+                                if (url == null){
+                                    Toast.makeText(getContext(),"Save Image Filed!",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    event.setImgUrl(url);
+
+                                }
+                            }
+                        });
+                        Toast.makeText(getContext(),"The Event Saved!",Toast.LENGTH_SHORT).show();
+                        AddEventDirections.ActionAddEventToNavHome action = AddEventDirections.actionAddEventToNavHome(ownEmail);
+                        Navigation.findNavController(view).navigate(action);
+                    }
+                });
+
             }
         });
 
