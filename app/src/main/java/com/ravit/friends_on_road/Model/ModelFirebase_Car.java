@@ -120,26 +120,22 @@ public class ModelFirebase_Car {
 
     public static void updateCar(Car car, Model.UpdateCarListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String,Object> data=new HashMap<String, Object>();
-        data.put("model",car.getModel());
-        data.put("licensePlateNum",car.getLicensePlateNum());
-        data.put("year",car.getYear());
-        data.put("engine",car.getEngine());
-        data.put("numPlaces",car.getPlaces());
-        data.put("emailOwner",car.getEmailOwner());
+
 
         db.collection("cars").document(car.getLicensePlateNum())
-                .set(data)
+                .set(car)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("TAG", "DocumentSnapshot successfully written!");
+                        listener.onComplete(true);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w("TAG", "Error writing document", e);
+                        listener.onComplete(false);
                     }
                 });
 

@@ -15,6 +15,30 @@ public class Model {
 
     }
 
+//////////Event Num Run//////////////////
+
+    public interface AddNumRunListener{
+        void onComplete(boolean success);
+    }
+    public void addNumRun(EventsNumRun numRun,AddNumRunListener listener){
+        ModelFirebase_EventNumRun.addNumRun(numRun,listener);
+    }
+
+    public interface GetNumRunListener{
+        void onComplete(EventsNumRun numRun);
+    }
+    public void getNumRun(GetNumRunListener listener){
+        ModelFirebase_EventNumRun.getNumRun(listener);
+    }
+
+
+    public interface UpdateNumRunListener {
+        void onComplete(boolean success);
+    }
+    public void updateNumRun(final String numRun,UpdateNumRunListener listener) {
+        ModelFirebase_EventNumRun.updateNumRun(numRun,listener);
+    }
+
 //////////////////User/////////////////
     public interface AddUserListener{
         void onComplete(boolean success);
@@ -125,29 +149,15 @@ public class Model {
     }
 
 
-//////////Event Num Run//////////////////
-
-    public interface AddNumRunListener{
+    public interface UpdateEventListener {
         void onComplete(boolean success);
     }
-    public void addNumRun(EventsNumRun numRun,AddNumRunListener listener){
-        ModelFirebase_EventNumRun.addNumRun(numRun,listener);
-    }
 
-    public interface GetNumRunListener{
-        void onComplete(EventsNumRun numRun);
-    }
-    public void getNumRun(GetNumRunListener listener){
-        ModelFirebase_EventNumRun.getNumRun(listener);
+    public void updateEvent(final Event event, UpdateEventListener listener) {
+        ModelFirebase_Event.updateEvent(event, listener);
     }
 
 
-    public interface UpdateNumRunListener {
-        void onComplete(boolean success);
-    }
-    public void updateNumRun(final String numRun,UpdateNumRunListener listener) {
-        ModelFirebase_EventNumRun.updateNumRun(numRun,listener);
-    }
 
 
 

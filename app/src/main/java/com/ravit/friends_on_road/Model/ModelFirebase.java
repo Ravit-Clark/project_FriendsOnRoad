@@ -43,6 +43,8 @@ public class ModelFirebase {
         data.put("phone",user.getPhone());
         data.put("email",user.getEmail());
         data.put("passWord",user.getPassword());
+        data.put("openEvent",false);
+        data.put("myOpenEvent","0000");
 
 
         db.collection("users").document(user.getEmail()).set(data)
@@ -91,7 +93,6 @@ public class ModelFirebase {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()){
                             User user = task.getResult().toObject(User.class);
-
                             listener.onComplete(user);
                         }else{
                             listener.onComplete(null);
@@ -107,27 +108,26 @@ public class ModelFirebase {
 
 
     public void updateUser(final User user,Model.UpdateUserListener listener){
+        Log.d("TAG", "update: "+user.getName());
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String,Object> data=new HashMap<String, Object>();
-        data.put("name",user.getName());
-        data.put("phone",user.getPhone());
-        data.put("email",user.getEmail());
-
-
+        Log.d("TAG", "DocumentSnapshot successfully written!");
         db.collection("users").document(user.getEmail())
-                .set(data)
+                .set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("TAG", "DocumentSnapshot successfully written!");
+                        listener.onComplete(true);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w("TAG", "Error writing document", e);
+                        listener.onComplete(false);
                     }
-                });
+                }
+        );
 
     }
 

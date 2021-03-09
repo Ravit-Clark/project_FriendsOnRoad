@@ -63,6 +63,7 @@ public class ModelFirebase_Event {
         data.put("specificNumEvent",event.getNumOfSpecificEvent());
 
 
+
         db.collection("events").document(event.getNumOfSpecificEvent()).set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -106,28 +107,46 @@ public class ModelFirebase_Event {
 
     public static void getEventByNumOfSpecificEvent(String numOfSpecificEvent, Model.GetEventByEventNumListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("events").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot doc : task.getResult()) {
-                        Event event = doc.toObject(Event.class);
-                        if (event.getNumOfSpecificEvent().equals(numOfSpecificEvent))
+        Log.d("TAG","numOfSpecificEvent: "+numOfSpecificEvent);
+        db.collection("events").document(numOfSpecificEvent).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            Event event = task.getResult().toObject(Event.class);
                             listener.onComplete(event);
-
+                        }else{
+                            listener.onComplete(null);
+                        }
                     }
-                }else{
-                    Log.d("TAG", "failed getting events ");
-                    listener.onComplete(null);
-                }
-            }
-        });
-
+                });
 
     }
 
+    public static void updateEvent(Event event, Model.UpdateEventListener listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("events").document(event.getNumOfSpecificEvent())
+                .set(event)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully written!");
+                        listener.onComplete(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error writing document", e);
+                        listener.onComplete(false);
+                    }
+                });
 
 
+
+
+    }
 
 
     public interface UploadImageListener{

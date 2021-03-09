@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_nav_home_to_needHelp"
             app:destination="@id/needHelp" />
+        <action
+            android:id="@+id/action_nav_home_to_editMyOpenEvent"
+            app:destination="@id/editMyOpenEvent" />
     </fragment>
 
     <fragment
@@ -156,6 +159,9 @@
         <argument
             android:name="eventNum"
             app:argType="string" />
+        <action
+            android:id="@+id/action_editMyOpenEvent_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
     <fragment
         android:id="@+id/needHelp"

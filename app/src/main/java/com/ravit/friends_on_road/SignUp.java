@@ -61,6 +61,7 @@ public class SignUp extends Fragment {
                 newUser.setPhone(phone.getText().toString());
                 newUser.setEmail(email.getText().toString());
                 newUser.setPassword(pass.getText().toString());
+                newUser.setEventOpen(false);
                 Toast.makeText(getContext(),"Loading..",Toast.LENGTH_SHORT).show();
                 pBar.setVisibility(view.VISIBLE);
                 signUpBtn.setEnabled(false);

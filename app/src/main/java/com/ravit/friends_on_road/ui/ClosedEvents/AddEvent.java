@@ -30,6 +30,7 @@ import com.ravit.friends_on_road.Model.Event;
 import com.ravit.friends_on_road.Model.EventsNumRun;
 import com.ravit.friends_on_road.Model.Model;
 import com.ravit.friends_on_road.Model.ModelFirebase;
+import com.ravit.friends_on_road.Model.User;
 import com.ravit.friends_on_road.R;
 
 import java.util.List;
@@ -40,22 +41,31 @@ import static android.app.Activity.RESULT_OK;
 
 public class AddEvent extends Fragment  {
     //implements AdapterView.OnItemSelectedListener
+    EditText type;
+    EditText description;
+    EditText location;
+    EditText numOfEvent;
+    Button saveBtn;
+    ImageButton addImg;
+
     String[] items;
     List<Car> data;
     ImageView img;
     String _numRun;
+    User user1;
+    String ownEmail;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_event, container, false);
-        EditText type = view.findViewById(R.id.addEvent_type);
-        EditText description = view.findViewById(R.id.addEvent_description);
-        EditText location = view.findViewById(R.id.addEvent_location);
-        TextView numOfEvent=view.findViewById(R.id.addEvent_numOfEvent);
-        Button saveBtn = view.findViewById(R.id.addEvent_saveBtn);
-        ImageButton addImg=view.findViewById(R.id.addEvent_addImgBtn);
+        type = view.findViewById(R.id.addEvent_type);
+        description = view.findViewById(R.id.addEvent_description);
+        location = view.findViewById(R.id.addEvent_location);
+        numOfEvent=view.findViewById(R.id.addEvent_numOfEvent);
+        saveBtn = view.findViewById(R.id.addEvent_saveBtn);
+        addImg=view.findViewById(R.id.addEvent_addImgBtn);
         img = view.findViewById(R.id.addEvent_img);
         addImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,17 +73,10 @@ public class AddEvent extends Fragment  {
                 editImage();
             }
         });
-        String ownEmail = AddEventArgs.fromBundle(getArguments()).getEmailOwner();
+        ownEmail= AddEventArgs.fromBundle(getArguments()).getEmailOwner();
 
-        Model.instance.getNumRun(new Model.GetNumRunListener() {
-            @Override
-            public void onComplete(EventsNumRun numRun) {
-                Log.d("TAG","num add: "+numRun.getNum());
-                numOfEvent.setText(numRun.getNum());
-                _numRun=numRun.getNum();
-            }
-
-        });
+        getNumRun();
+        getUser();
 
         //Spinner dropdown = view.findViewById(R.id.addEvent_carsSpinner);
 
@@ -104,7 +107,6 @@ public class AddEvent extends Fragment  {
                 event.setEmailOwner(ownEmail);
                 event.openEvent();//status-open
                 event.setNumOfSpecificEvent(_numRun);
-
                 int numInt = Integer.parseInt(_numRun);
                 numInt++;
                 String newNum=String.valueOf(numInt);
@@ -124,6 +126,7 @@ public class AddEvent extends Fragment  {
                             @Override
                             public void onComplete(String url) {
                                 if (url == null){
+
                                     Toast.makeText(getContext(),"Save Image Filed!",Toast.LENGTH_SHORT).show();
                                 }else{
                                     event.setImgUrl(url);
@@ -131,6 +134,26 @@ public class AddEvent extends Fragment  {
                                 }
                             }
                         });
+                        Model.instance.getUser(ownEmail, new Model.GetUserListener() {
+                            @Override
+                            public void onComplete(User user) {
+                                user1=user;
+                                Log.d("TAG","on complete add - name: "+user.getName());
+                                Log.d("TAG","open: "+user1.isEventOpen());
+                                Log.d("TAG","myEvent: "+user1.getMyOpenEvent());
+                                user1.setEventOpen(true);
+                                user1.setMyOpenEvent(_numRun);
+                                Log.d("TAG","open: "+user1.isEventOpen());
+                                Log.d("TAG","myEvent: "+user1.getMyOpenEvent());
+                                Model.instance.updateUser(user1 , new Model.UpdateUserListener(){
+                                    @Override
+                                    public void onComplete(boolean success) {
+                                        Toast.makeText(getContext(),"openEvent Saved!",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+
                         Toast.makeText(getContext(),"The Event Saved!",Toast.LENGTH_SHORT).show();
                         AddEventDirections.ActionAddEventToNavHome action = AddEventDirections.actionAddEventToNavHome(ownEmail);
                         Navigation.findNavController(view).navigate(action);
@@ -143,6 +166,42 @@ public class AddEvent extends Fragment  {
 
         return view;
     }
+
+
+
+    public void getNumRun(){
+        Model.instance.getNumRun(new Model.GetNumRunListener() {
+            @Override
+            public void onComplete(EventsNumRun numRun) {
+                Log.d("TAG","num add: "+numRun.getNum());
+                numOfEvent.setText(numRun.getNum());
+                _numRun=numRun.getNum();
+
+            }
+
+        });
+    }
+
+
+    public void getUser(){
+
+        Model.instance.getUser(ownEmail, new Model.GetUserListener() {
+            @Override
+            public void onComplete(User user) {
+                user1=user;
+                Log.d("TAG","on complete add - name: "+user.getName());
+                Log.d("TAG","open: "+user1.isEventOpen());
+                Log.d("TAG","myEvent: "+user1.getMyOpenEvent());
+                user1.setEventOpen(true);
+                user1.setMyOpenEvent(_numRun);
+                Log.d("TAG","open: "+user1.isEventOpen());
+                Log.d("TAG","myEvent: "+user1.getMyOpenEvent());
+            }
+        });
+
+
+    }
+
 
 //    @Override
 //    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

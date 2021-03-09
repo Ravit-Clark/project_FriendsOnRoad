@@ -35,6 +35,7 @@ import static android.app.Activity.RESULT_OK;
 public class EditProfile extends Fragment {
     final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView img;
+    User user1;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class EditProfile extends Fragment {
         Model.instance.getUser(userEmail, new Model.GetUserListener() {
             @Override
             public void onComplete(User user) {
+                user1=user;
                 Log.d("TAG",""+user.getName());
                 name.setText(user.getName());
                 phone.setText(user.getPhone());
@@ -77,6 +79,9 @@ public class EditProfile extends Fragment {
                 u.setName(name.getText().toString());
                 u.setPhone(phone.getText().toString());
                 u.setEmail(email.getText().toString());
+                u.setPassword(user1.getPassword());
+                u.setMyOpenEvent(user1.getMyOpenEvent());
+                u.setEventOpen(user1.isEventOpen());
                 Bitmap bitmap = ((BitmapDrawable)img.getDrawable()).getBitmap();
                 Model.instance.uploadImage(bitmap, u.getEmail(), new ModelFirebase.UploadImageListener() {
                     @Override
