@@ -33,6 +33,9 @@ import com.ravit.friends_on_road.Model.User;
 import com.ravit.friends_on_road.R;
 import com.ravit.friends_on_road.ui.myCars.EditCarDirections;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
@@ -43,10 +46,16 @@ public class EditMyOpenEvent extends Fragment {
     EditText descripion;
     EditText location;
     EditText status;
+    EditText carView;
+    Button chooseCar;
+    String carChoosen;
+    List<Car> cars;
+    CharSequence[] options;
     Button saveBtn;
     String myEvent;
     ImageButton editImg;
     Button close;
+    String userEmail;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,9 +64,10 @@ public class EditMyOpenEvent extends Fragment {
         type=view.findViewById(R.id.editEvent_type);
         descripion=view.findViewById(R.id.editEvent_descripion);
         location=view.findViewById(R.id.editEvent_location);
+        carView=view.findViewById(R.id.editEvent_car);
         status=view.findViewById(R.id.editEvent_status);
         close=view.findViewById(R.id.editEvent_closeEventBtn);
-        //TextView car=view.findViewById(R.id.editEvent_type);
+        chooseCar=view.findViewById(R.id.editEvent_chooseCarBtn);
         saveBtn = view.findViewById(R.id.editEvent_saveBtn);
 
         myEvent = EditMyOpenEventArgs.fromBundle(getArguments()).getEventNum();
@@ -72,6 +82,37 @@ public class EditMyOpenEvent extends Fragment {
         });
 
         getEvent();
+        //userEmail = Model.instance.getUserEmail();
+        chooseCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cars = new LinkedList<>();
+
+                Model.instance.getCarsByEmailOwner(ev.getEmailOwner(), new Model.GetCarsByEmailOwnerListener() {
+                    @Override
+                    public void onComplete(List<Car> data) {
+                        cars=data;
+                        options = new CharSequence[cars.size()];
+                        for(int i=0;i<options.length;i++){
+                            options[i]=cars.get(i).getLicensePlateNum();
+                        }
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle("Choose a Car:");
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int item) {
+                                carChoosen=options[item].toString();
+                                Log.d("TAG","car choosen: "+carChoosen);
+                                carView.setText(carChoosen);
+
+                            }
+                        });
+                        builder.show();
+                    }
+                });
+
+            }
+        });
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +121,8 @@ public class EditMyOpenEvent extends Fragment {
                 Log.d("TAG","close: "+ev.getNumOfSpecificEvent());
                 event.setType(type.getText().toString());
                 event.setDescription(descripion.getText().toString());
-                event.setLocaion(location.getText().toString());
+                event.setLocation(location.getText().toString());
+                event.setCar(carChoosen);
 
                 Bitmap bitmap = ((BitmapDrawable)img.getDrawable()).getBitmap();
                 Model.instance.uploadImage(bitmap, event.getNumOfSpecificEvent(), new ModelFirebase.UploadImageListener() {
@@ -169,8 +211,9 @@ public class EditMyOpenEvent extends Fragment {
                 Log.d("TAG","num close: "+event.getNumOfSpecificEvent());
                 type.setText(event.getType());
                 descripion.setText(event.getDescription());
-                location.setText(event.getLocaion());
-                Log.d("TAG","location: "+event.getLocaion());
+                location.setText(event.getLocation());
+                Log.d("TAG","location: "+event.getLocation());
+                carView.setText(event.getCar());
                 status.setText(event.getStatus());
                 Log.d("TAG","status: "+event.getStatus());
             }

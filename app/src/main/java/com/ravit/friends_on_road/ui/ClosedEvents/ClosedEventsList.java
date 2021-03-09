@@ -97,7 +97,7 @@ public class ClosedEventsList extends Fragment {
             TextView location = view.findViewById(R.id.eventRow_location);
 
             type.setText(data.get(i).getType());
-            location.setText(data.get(i).getLocaion());
+            location.setText(data.get(i).getLocation());
 
             ImageView imagev = view.findViewById(R.id.eventRow_img);
             imagev.setTag(event.getImgUrl());

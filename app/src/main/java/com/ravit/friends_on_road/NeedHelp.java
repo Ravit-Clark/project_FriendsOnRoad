@@ -94,7 +94,7 @@ public class NeedHelp extends Fragment {
             }
 
             Log.d("TAG", "type: "+data.get(i).getType());
-            Log.d("TAG", "location: "+data.get(i).getLocaion());
+            Log.d("TAG", "location: "+data.get(i).getLocation());
             Log.d("TAG", "descr: "+data.get(i).getDescription());
             Log.d("TAG", "num: "+data.get(i).getNumOfSpecificEvent());
             Log.d("TAG", "email: "+data.get(i).getEmailOwner());
@@ -105,7 +105,7 @@ public class NeedHelp extends Fragment {
             TextView status = view.findViewById(R.id.eventRow_status);
 
             type.setText(data.get(i).getType());
-            location.setText(data.get(i).getLocaion());
+            location.setText(data.get(i).getLocation());
             status.setText(data.get(i).getStatus());
 
             ImageView imagev = view.findViewById(R.id.eventRow_img);

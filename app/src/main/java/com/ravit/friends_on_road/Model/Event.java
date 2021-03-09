@@ -7,7 +7,7 @@ public class Event {
     private String type;
     private String description;
     private String location;
-    //private String car;
+    private String car;
     private String status;
     private String imgUrl;
 
@@ -65,20 +65,17 @@ public class Event {
         this.description = description;
     }
 
-    public void setLocaion(String location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
-    public String getLocaion() {
+    public String getLocation() {
         return location;
     }
-//    public void setCar(String car) {
-//        this.car = car;
-//    }
-
-
-
-//    public String getCar() {
-//        return car;
-//    }
+    public void setCar(String car) {
+        this.car = car;
+    }
+    public String getCar() {
+        return car;
+    }
 }

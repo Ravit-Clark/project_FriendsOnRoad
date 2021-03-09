@@ -33,6 +33,7 @@ import com.ravit.friends_on_road.Model.ModelFirebase;
 import com.ravit.friends_on_road.Model.User;
 import com.ravit.friends_on_road.R;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -45,12 +46,14 @@ public class AddEvent extends Fragment  {
     EditText description;
     EditText location;
     EditText numOfEvent;
+    EditText carView;
+    Button chooseCar;
+    String carChoosen;
+    List<Car> cars;
+    CharSequence[] options;
     Button saveBtn;
-    ImageButton addImg;
-
-    String[] items;
-    List<Car> data;
     ImageView img;
+    ImageButton addImg;
     String _numRun;
     User user1;
     String ownEmail;
@@ -64,6 +67,8 @@ public class AddEvent extends Fragment  {
         description = view.findViewById(R.id.addEvent_description);
         location = view.findViewById(R.id.addEvent_location);
         numOfEvent=view.findViewById(R.id.addEvent_numOfEvent);
+        carView=view.findViewById(R.id.addEvent_carView);
+        chooseCar=view.findViewById(R.id.addEvent_chooseCarBtn);
         saveBtn = view.findViewById(R.id.addEvent_saveBtn);
         addImg=view.findViewById(R.id.addEvent_addImgBtn);
         img = view.findViewById(R.id.addEvent_img);
@@ -95,15 +100,47 @@ public class AddEvent extends Fragment  {
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        dropdown.setAdapter(adapter);
 
+        chooseCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cars = new LinkedList<>();
+
+                Model.instance.getCarsByEmailOwner(ownEmail, new Model.GetCarsByEmailOwnerListener() {
+                    @Override
+                    public void onComplete(List<Car> data) {
+                        cars=data;
+                        options = new CharSequence[cars.size()];
+                        for(int i=0;i<options.length;i++){
+                            options[i]=cars.get(i).getLicensePlateNum();
+                        }
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle("Choose a Car:");
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int item) {
+                                carChoosen=options[item].toString();
+                                Log.d("TAG","car choosen: "+carChoosen);
+                                carView.setText(carChoosen);
+
+                            }
+                        });
+                        builder.show();
+                    }
+                });
+
+            }
+        });
 
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("TAG","carChoosen- "+carChoosen);
                 Event event = new Event();
                 event.setType(type.getText().toString());
-                event.setLocaion(location.getText().toString());
+                event.setLocation(location.getText().toString());
                 event.setDescription(description.getText().toString());
+                event.setCar(carChoosen);
                 event.setEmailOwner(ownEmail);
                 event.openEvent();//status-open
                 event.setNumOfSpecificEvent(_numRun);

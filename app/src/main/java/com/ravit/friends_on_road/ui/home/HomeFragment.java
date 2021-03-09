@@ -99,13 +99,16 @@ public class HomeFragment extends Fragment {
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(user.isEventOpen()){
-                    Toast.makeText(getContext(),"You already have an open event!",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    HomeFragmentDirections.ActionNavHomeToAddEvent action = HomeFragmentDirections.actionNavHomeToAddEvent(userEmail);
-                    Navigation.findNavController(view).navigate(action);
-                }
+//                if(user.isEventOpen()){
+//                    Toast.makeText(getContext(),"You already have an open event!",Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//                    HomeFragmentDirections.ActionNavHomeToAddEvent action = HomeFragmentDirections.actionNavHomeToAddEvent(userEmail);
+//                    Navigation.findNavController(view).navigate(action);
+//                }
+
+                HomeFragmentDirections.ActionNavHomeToAddEvent action = HomeFragmentDirections.actionNavHomeToAddEvent(userEmail);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 

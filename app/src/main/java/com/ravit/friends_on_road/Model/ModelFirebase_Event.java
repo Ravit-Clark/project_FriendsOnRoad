@@ -57,8 +57,8 @@ public class ModelFirebase_Event {
         Map<String,Object> data=new HashMap<String, Object>();
         data.put("type",event.getType());
         data.put("description",event.getDescription());
-        data.put("location",event.getLocaion());
-        //data.put("car",event.getCar());
+        data.put("location",event.getLocation());
+        data.put("car",event.getCar());
         data.put("emailOwner",event.getEmailOwner());
         data.put("status",event.getStatus());
         data.put("numOfSpecificEvent",event.getNumOfSpecificEvent());

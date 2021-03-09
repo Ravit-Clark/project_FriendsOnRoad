@@ -44,7 +44,7 @@ public class EventDetails extends Fragment {
             public void onComplete(Event event) {
                 type.setText(event.getType());
                 description.setText(event.getDescription());
-                location.setText(event.getLocaion());
+                location.setText(event.getLocation());
                 //car.setText(event.getCar());
                 status.setText(event.getStatus());
 //                img.setTag(event.getImgUrl());
