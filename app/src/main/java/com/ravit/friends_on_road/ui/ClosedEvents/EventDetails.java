@@ -18,7 +18,11 @@ import com.ravit.friends_on_road.R;
 import com.squareup.picasso.Picasso;
 
 public class EventDetails extends Fragment {
-ImageView img;
+    TextView type;
+    TextView description;
+    TextView location;
+    TextView status;
+    ImageView img;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,12 +30,11 @@ ImageView img;
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_event_details, container, false);
 
-        TextView type = view.findViewById(R.id.eventDetails_type);
-        TextView description = view.findViewById(R.id.eventDetails_descripion);
-        TextView location = view.findViewById(R.id.eventDetails_location);
+        type = view.findViewById(R.id.eventDetails_type);
+        description = view.findViewById(R.id.eventDetails_descripion);
+        location = view.findViewById(R.id.eventDetails_location);
        // TextView car = view.findViewById(R.id.eventDetails_car);
-        TextView status = view.findViewById(R.id.evenDetails_status);
-        final ImageButton editEventBtn=view.findViewById(R.id.eventDetails_editBtn);
+        status = view.findViewById(R.id.evenDetails_status);
         img=view.findViewById(R.id.eventDetails_img);
 
 
@@ -44,26 +47,18 @@ ImageView img;
                 location.setText(event.getLocaion());
                 //car.setText(event.getCar());
                 status.setText(event.getStatus());
-                img.setTag(event.getImgUrl());
-                if (event.getImgUrl() != null && event.getImgUrl() != ""){
-                    if (event.getImgUrl() == img.getTag()) {
-                        Picasso.get().load(event.getImgUrl()).into(img);
-                    }
-                }else{
-                    img.setImageResource(R.drawable.help);
-                }
+//                img.setTag(event.getImgUrl());
+//                if (event.getImgUrl() != null && event.getImgUrl() != ""){
+//                    if (event.getImgUrl() == img.getTag()) {
+//                        Picasso.get().load(event.getImgUrl()).into(img);
+//                    }
+//                }else{
+//                    img.setImageResource(R.drawable.help);
+//                }
             }
         });
 
 
-        editEventBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                CarDetailsDirections.ActionCarDetailsToEditCar action = CarDetailsDirections.actionCarDetailsToEditCar(carNum.getText().toString());
-//                Navigation.findNavController(view).navigate(action);
-//                EventDetailsDirections.actionEventDetailsToEditMyOpenEvent()
-            }
-        });
 
 
 

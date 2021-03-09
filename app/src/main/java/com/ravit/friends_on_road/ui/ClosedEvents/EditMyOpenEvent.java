@@ -29,6 +29,7 @@ import com.ravit.friends_on_road.Model.Car;
 import com.ravit.friends_on_road.Model.Event;
 import com.ravit.friends_on_road.Model.Model;
 import com.ravit.friends_on_road.Model.ModelFirebase;
+import com.ravit.friends_on_road.Model.User;
 import com.ravit.friends_on_road.R;
 import com.ravit.friends_on_road.ui.myCars.EditCarDirections;
 
@@ -45,6 +46,7 @@ public class EditMyOpenEvent extends Fragment {
     Button saveBtn;
     String myEvent;
     ImageButton editImg;
+    Button close;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,12 +56,11 @@ public class EditMyOpenEvent extends Fragment {
         descripion=view.findViewById(R.id.editEvent_descripion);
         location=view.findViewById(R.id.editEvent_location);
         status=view.findViewById(R.id.editEvent_status);
+        close=view.findViewById(R.id.editEvent_closeEventBtn);
         //TextView car=view.findViewById(R.id.editEvent_type);
         saveBtn = view.findViewById(R.id.editEvent_saveBtn);
 
         myEvent = EditMyOpenEventArgs.fromBundle(getArguments()).getEventNum();
-
-
 
         editImg = view.findViewById(R.id.editEvent_editImgBtn);
         img=view.findViewById(R.id.editEvent_img);
@@ -72,12 +73,11 @@ public class EditMyOpenEvent extends Fragment {
 
         getEvent();
 
-
-
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Event event=ev;
+                Log.d("TAG","close: "+ev.getNumOfSpecificEvent());
                 event.setType(type.getText().toString());
                 event.setDescription(descripion.getText().toString());
                 event.setLocaion(location.getText().toString());
@@ -112,6 +112,43 @@ public class EditMyOpenEvent extends Fragment {
             }
         });
 
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("TAG","close: "+ev.getNumOfSpecificEvent());
+                Model.instance.getEventByEventNum(myEvent, new Model.GetEventByEventNumListener() {
+                    @Override
+                    public void onComplete(Event event) {
+                        ev=event;
+                        Log.d("TAG","close: "+ev.getNumOfSpecificEvent());
+                    }
+                });
+                ev.closeEvent();//change status to 'close'
+                Model.instance.updateEvent(ev, new Model.UpdateEventListener() {
+                    @Override
+                    public void onComplete(boolean success) {
+                        Toast.makeText(getContext(),"update event",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                Model.instance.getUser(ev.getEmailOwner(), new Model.GetUserListener() {
+                    @Override
+                    public void onComplete(User user) {
+                        User user1=user;
+                        user1.setEventOpen(false);
+                        //user1.setMyOpenEvent(_numRun);
+                        Model.instance.updateUser(user1 , new Model.UpdateUserListener(){
+                            @Override
+                            public void onComplete(boolean success) {
+                                Toast.makeText(getContext(),"update user",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+                Toast.makeText(getContext(),"The event closed!",Toast.LENGTH_SHORT).show();
+                EditMyOpenEventDirections.ActionEditMyOpenEventToNavHome action =EditMyOpenEventDirections.actionEditMyOpenEventToNavHome(ev.getEmailOwner());
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
 
 
 
@@ -128,6 +165,8 @@ public class EditMyOpenEvent extends Fragment {
             @Override
             public void onComplete(Event event) {
                 ev=event;
+                Log.d("TAG","num close: "+event.getNumOfSpecificEvent());
+                Log.d("TAG","num close: "+event.getNumOfSpecificEvent());
                 type.setText(event.getType());
                 descripion.setText(event.getDescription());
                 location.setText(event.getLocaion());

@@ -28,6 +28,7 @@ public class ModelFirebase_Event {
 
 
     public static void getEventsByEmailOwner(String email, Model.GetEventsByEmailOwnerListener listener) {
+        Log.d("TAG","get user by email: "+email);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("events").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -58,9 +59,9 @@ public class ModelFirebase_Event {
         data.put("description",event.getDescription());
         data.put("location",event.getLocaion());
         //data.put("car",event.getCar());
-        data.put("ownerEmail",event.getEmailOwner());
+        data.put("emailOwner",event.getEmailOwner());
         data.put("status",event.getStatus());
-        data.put("specificNumEvent",event.getNumOfSpecificEvent());
+        data.put("numOfSpecificEvent",event.getNumOfSpecificEvent());
 
 
 
@@ -114,6 +115,7 @@ public class ModelFirebase_Event {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()){
                             Event event = task.getResult().toObject(Event.class);
+                            Log.d("TAG","get num: "+event.getNumOfSpecificEvent());
                             listener.onComplete(event);
                         }else{
                             listener.onComplete(null);

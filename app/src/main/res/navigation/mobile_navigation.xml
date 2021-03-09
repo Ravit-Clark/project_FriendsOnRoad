@@ -82,11 +82,6 @@
             app:popUpTo="@id/nav_Profile"
             app:popUpToInclusive="true" />
     </fragment>
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.ravit.friends_on_road.MainActivity"
-        android:label="app_bar_main"
-        tools:layout="@layout/app_bar_main" />
     <fragment
         android:id="@+id/addEvent"
         android:name="com.ravit.friends_on_road.ui.ClosedEvents.AddEvent"

@@ -47,6 +47,7 @@ public class ModelFirebase {
         data.put("myOpenEvent","0000");
 
 
+
         db.collection("users").document(user.getEmail()).set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

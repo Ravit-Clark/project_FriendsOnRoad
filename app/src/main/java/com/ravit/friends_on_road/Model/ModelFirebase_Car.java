@@ -35,7 +35,7 @@ public class ModelFirebase_Car {
         data.put("licensePlateNum",car.getLicensePlateNum());
         data.put("year",car.getYear());
         data.put("engine",car.getEngine());
-        data.put("numPlaces",car.getPlaces());
+        data.put("places",car.getPlaces());
         data.put("emailOwner",car.getEmailOwner());
 
 

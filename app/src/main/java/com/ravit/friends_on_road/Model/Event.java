@@ -3,13 +3,12 @@ package com.ravit.friends_on_road.Model;
 public class Event {
 
     private String emailOwner;
-
     private String numOfSpecificEvent;
     private String type;
     private String description;
-    private String locaion;
+    private String location;
     //private String car;
-    private String status="open";
+    private String status;
     private String imgUrl;
 
 
@@ -29,10 +28,6 @@ public class Event {
     public void setEmailOwner(String emailOwner) {
         this.emailOwner = emailOwner;
     }
-
-
-
-
 
     public String getImgUrl() {
         return imgUrl;
@@ -70,17 +65,18 @@ public class Event {
         this.description = description;
     }
 
-    public void setLocaion(String locaion) {
-        this.locaion = locaion;
+    public void setLocaion(String location) {
+        this.location = location;
     }
 
+    public String getLocaion() {
+        return location;
+    }
 //    public void setCar(String car) {
 //        this.car = car;
 //    }
 
-    public String getLocaion() {
-        return locaion;
-    }
+
 
 //    public String getCar() {
 //        return car;

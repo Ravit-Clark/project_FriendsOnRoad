@@ -93,20 +93,20 @@ public class ClosedEventsList extends Fragment {
             }
 
             Event event = data.get(i);
-            TextView type = view.findViewById(R.id.carRow_model);
-            TextView location = view.findViewById(R.id.carRow_num);
+            TextView type = view.findViewById(R.id.eventRow_type);
+            TextView location = view.findViewById(R.id.eventRow_location);
 
             type.setText(data.get(i).getType());
             location.setText(data.get(i).getLocaion());
 
-            ImageView imagev = view.findViewById(R.id.carRow_image);
+            ImageView imagev = view.findViewById(R.id.eventRow_img);
             imagev.setTag(event.getImgUrl());
             if (event.getImgUrl() != null && event.getImgUrl() != ""){
                 if (event.getImgUrl() == imagev.getTag()) {
                     Picasso.get().load(event.getImgUrl()).into(imagev);
                 }
             }else{
-                imagev.setImageResource(R.drawable.car10);
+                imagev.setImageResource(R.drawable.help);
             }
             return view;
 
