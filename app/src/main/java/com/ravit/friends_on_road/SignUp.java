@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,7 @@ public class SignUp extends Fragment {
         final EditText pass =view.findViewById(R.id.signUp_passWord);
         Button signUpBtn = view.findViewById(R.id.signUp_btnSignUp);
         final ProgressBar pBar = view.findViewById(R.id.signUp_progressBar);
+        pBar.setVisibility(View.INVISIBLE);
         ImageView imageView;
         FirebaseAuth fAuth= FirebaseAuth.getInstance();
 
@@ -56,6 +58,24 @@ public class SignUp extends Fragment {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String mEmail=email.getText().toString().trim();
+                String mPass=pass.getText().toString().trim();
+                if(TextUtils.isEmpty(mEmail)){
+                    email.setError("Email is Required!");
+                    return;
+                }
+                if(TextUtils.isEmpty(mPass)){
+                    pass.setError("Password is Required!");
+                    return;
+                }
+                if(mPass.length()<6){
+                    pass.setError("Password must be >= 6 Characters");
+                    return;
+                }
+
+
+                pBar.setVisibility(view.VISIBLE);
+
                 User newUser= new User();
                 newUser.setName(name.getText().toString());
                 newUser.setPhone(phone.getText().toString());
@@ -63,25 +83,24 @@ public class SignUp extends Fragment {
                 newUser.setPassword(pass.getText().toString());
                 newUser.setEventOpen(false);
                 Toast.makeText(getContext(),"Loading..",Toast.LENGTH_SHORT).show();
-                pBar.setVisibility(view.VISIBLE);
                 signUpBtn.setEnabled(false);
                 FirebaseAuth fAuth= FirebaseAuth.getInstance();
                 fAuth.createUserWithEmailAndPassword(newUser.getEmail(),newUser.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            pBar.setVisibility(view.GONE);
-                            Toast.makeText(getContext(),"User Created",Toast.LENGTH_SHORT).show();
                             Model.instance.addUser(newUser, new Model.AddUserListener() {
                                 @Override
                                 public void onComplete(boolean success) {
+                                    pBar.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(getContext(),"User Created",Toast.LENGTH_SHORT).show();
                                     SignUpDirections.ActionSignUpToNavHome action = SignUpDirections.actionSignUpToNavHome(newUser.getEmail());
                                     Navigation.findNavController(view).navigate(action);
                                 }
                             });
 
                         }else{
-                            pBar.setVisibility(view.GONE);
+                            pBar.setVisibility(View.INVISIBLE);
                             Toast.makeText(getContext(),"Error!",Toast.LENGTH_SHORT).show();
                             signUpBtn.setEnabled(true);
                         }

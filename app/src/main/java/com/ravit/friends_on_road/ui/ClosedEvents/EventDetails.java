@@ -22,6 +22,7 @@ public class EventDetails extends Fragment {
     TextView description;
     TextView location;
     TextView status;
+    TextView car;
     ImageView img;
 
     @Override
@@ -33,7 +34,7 @@ public class EventDetails extends Fragment {
         type = view.findViewById(R.id.eventDetails_type);
         description = view.findViewById(R.id.eventDetails_descripion);
         location = view.findViewById(R.id.eventDetails_location);
-       // TextView car = view.findViewById(R.id.eventDetails_car);
+       TextView car = view.findViewById(R.id.eventDetails_car);
         status = view.findViewById(R.id.evenDetails_status);
         img=view.findViewById(R.id.eventDetails_img);
 
@@ -45,7 +46,7 @@ public class EventDetails extends Fragment {
                 type.setText(event.getType());
                 description.setText(event.getDescription());
                 location.setText(event.getLocation());
-                //car.setText(event.getCar());
+                car.setText(event.getCar());
                 status.setText(event.getStatus());
 //                img.setTag(event.getImgUrl());
 //                if (event.getImgUrl() != null && event.getImgUrl() != ""){

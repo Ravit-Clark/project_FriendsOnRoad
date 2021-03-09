@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,21 @@ public class login extends Fragment {
             FirebaseAuth mAuth= FirebaseAuth.getInstance();
             @Override
             public void onClick(View v) {
+                String mEmail=email.getText().toString().trim();
+                String mPass=pass.getText().toString().trim();
+                if(TextUtils.isEmpty(mEmail)){
+                    email.setError("Email is Required!");
+                    return;
+                }
+                if(TextUtils.isEmpty(mPass)){
+                    pass.setError("Password is Required!");
+                    return;
+                }
+                if(mPass.length()<6){
+                    pass.setError("Password must be >= 6 Characters");
+                    return;
+                }
+
                 mAuth.signInWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
