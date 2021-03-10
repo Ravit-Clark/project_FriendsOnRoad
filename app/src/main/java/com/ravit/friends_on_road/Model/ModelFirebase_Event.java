@@ -150,6 +150,27 @@ public class ModelFirebase_Event {
 
     }
 
+    public static void deleteEvent(String eventNum, Model.DeleteEventListener listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("events").document(eventNum)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error deleting document", e);
+                    }
+                });
+
+
+
+    }
+
 
     public interface UploadImageListener{
         void onComplete(String url);

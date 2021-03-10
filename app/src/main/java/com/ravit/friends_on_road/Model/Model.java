@@ -158,11 +158,13 @@ public class Model {
     }
 
 
+    public interface DeleteEventListener {
+        void onComplete(boolean success);
+    }
 
-
-
-
-
+    public void deleteEvent(final String eventNum, DeleteEventListener listener) {
+        ModelFirebase_Event.deleteEvent(eventNum, listener);
+    }
 
 
 

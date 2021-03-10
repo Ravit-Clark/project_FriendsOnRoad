@@ -93,14 +93,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/signUp_addImgBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="?android:attr/actionModeWebSearchDrawable"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5" />
-
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"

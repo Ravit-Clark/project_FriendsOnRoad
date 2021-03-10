@@ -49,6 +49,7 @@
         android:layout_marginStart="50dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:password="true"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="@+id/textView5"
